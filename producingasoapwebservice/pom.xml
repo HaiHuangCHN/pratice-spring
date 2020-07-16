@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.hai</groupId>
+	<artifactId>producingasoapwebservice</artifactId>
+	<packaging>jar</packaging>
+
+	<name>producingasoapwebservice</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.6.RELEASE</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web-services</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>javax.activation-api</artifactId>
+<!-- 			<version>1.2.0</version> -->
+		</dependency>
+
+
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<id>xjc-countries</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/resources/xsd/countries.xsd</source>
+							</sources>
+							<packageName>io.spring.guides.gs_producing_web_service</packageName>
+							<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>xjc-countries2</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>src/main/resources/xsd/countries2.xsd</source>
+							</sources>
+							<packageName>com.example2.myschema2</packageName>
+							<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+					</execution>
+
+					<!-- 					<execution>
+This can not work		<id>xjc-countries3</id>
+						<goals>
+							<goal>xjc</goal>
+						</goals>
+						<configuration>
+							<schemaDirectory>src/main/resources/xsd/countries3.xsd</schemaDirectory>
+							<schemaIncludes>
+								<include>countries3.xsd</include>
+							</schemaIncludes>
+							<packageName>com.example3.myschema3</packageName>
+							<outputDirectory>${project.build.directory}/generated-sources/jaxb</outputDirectory>
+							<clearOutputDir>false</clearOutputDir>
+						</configuration>
+					</execution> -->
+
+
+				</executions>
+			</plugin>
+
+
+		</plugins>
+	</build>
+</project>
